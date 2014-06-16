@@ -34,6 +34,24 @@ testing<- testing[,names]
 
 ##### invoke RF algorithm using cross validation with 4 k-folds implying 70% data for training, 30% data for cross validation 
 
+#####Indeeed if we calculate :
+
+```
+foldsTrain<-createFolds(y=training$classe,k=4,list=TRUE,returnTrain=T)
+sapply(folds,length)
+Fold1 Fold2 Fold3 Fold4 
+14715 14717 14718 14716 
+foldsCrossVal<-createFolds(y=training$classe,k=4,list=TRUE,returnTrain=F)
+sapply(foldsCrossVal,length)
+Fold1 Fold2 Fold3 Fold4 
+4904  4907  4906  4905
+sapply(folds,length)/(sapply(folds,length)+sapply(foldsCrossVal,length))
+Fold1     Fold2     Fold3     Fold4 
+0.7500382 0.7499490 0.7500000 0.7500127
+75% of whole training data.
+
+```
+
 ```
 modFit <- train(classe ~.,data = training,method="rf", prox=TRUE,allowParallel=T,trControl = trainControl(method = "cv", number = 4))
 ```
