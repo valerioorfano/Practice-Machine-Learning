@@ -48,7 +48,7 @@ Fold1 Fold2 Fold3 Fold4
 sapply(folds,length)/(sapply(folds,length)+sapply(foldsCrossVal,length))
 Fold1     Fold2     Fold3     Fold4 
 0.7500382 0.7499490 0.7500000 0.7500127
-if we use k=4 the training data is the 75% of whole input data. CrossValData will be 25% of th ewhole input data
+if we use k=4 the training data is the 75% of whole input data. CrossValData will be 25% of the whole input data
 ```
 
 ```
