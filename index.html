@@ -1,37 +1,42 @@
-<!DOCTYPE html>
+<!doctype html>
+<!-- The Time Machine GitHub pages theme was designed and developed by Jon Rohan, on Feb 7, 2012. -->
+<!-- Follow him for fun. http://twitter.com/jonrohan. Tail his code on http://github.com/jonrohan -->
 <html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-  <head>
-    <meta charset='utf-8' />
-    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <meta name="description" content="Practice-machine-learning : " />
+  <link rel="stylesheet" href="stylesheets/stylesheet.css" media="screen"/>
+  <link rel="stylesheet" href="stylesheets/pygment_trac.css"/>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script type="text/javascript" src="javascripts/script.js"></script>
 
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+  <title>Practice-machine-learning</title>
+  <meta name="description" content="">
 
-    <title>Practice-machine-learning</title>
-  </head>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
 
-  <body>
+</head>
 
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/valerioorfano/Practice-Machine-Learning">View on GitHub</a>
+<body>
 
-          <h1 id="project_title">Practice-machine-learning</h1>
-          <h2 id="project_tagline"></h2>
-
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/valerioorfano/Practice-Machine-Learning/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/valerioorfano/Practice-Machine-Learning/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
-    </div>
-
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h3>
+  <div class="wrapper">
+    <header>
+      <h1 class="title">Practice-machine-learning</h1>
+    </header>
+    <div id="container">
+      <p class="tagline"></p>
+      <div id="main" role="main">
+        <div class="download-bar">
+        <div class="inner">
+          <a href="https://github.com/valerioorfano/Practice-Machine-Learning/tarball/master" class="download-button tar"><span>Download</span></a>
+          <a href="https://github.com/valerioorfano/Practice-Machine-Learning/zipball/master" class="download-button zip"><span>Download</span></a>
+          <a href="https://github.com/valerioorfano/Practice-Machine-Learning" class="code">View Practice-machine-learning on GitHub</a>
+        </div>
+        <span class="blc"></span><span class="trc"></span>
+        </div>
+        <article class="markdown-body">
+          <h3>
 <a name="welcome-practice-machine-learning-project-assignment" class="anchor" href="#welcome-practice-machine-learning-project-assignment"><span class="octicon octicon-link"></span></a>Welcome Practice Machine Learning Project Assignment</h3>
 
 <h3>
@@ -71,7 +76,7 @@ training&lt;-training[,-c(1:6)]
 names&lt;-names(training)
 names&lt;-names[-length(names)]
 testing&lt;- testing[,names]
-# invoke RF algorithm using cross validation with 4 k-folds implying 70% data for training, 30% data for cross validation
+# invoke RF algorithm using cross validation with 4 k-folds implying 75% data for training, 25% data for cross validation
 modFit &lt;- train(classe ~.,data = training,method="rf", prox=TRUE,allowParallel=T,trControl = trainControl(method = "cv", number = 4))
 prediction&lt;-predict(modFit,testing)
 </code></pre>
@@ -123,18 +128,26 @@ E    0    1    0    8 1434 0.0062370062
 </code></pre>
 
 <p>OOB estimate of  error rate: 0.51%</p>
-      </section>
+        </article>
+      </div>
     </div>
+    <footer>
+      <div class="owner">
+      <p><a href="https://github.com/valerioorfano" class="avatar"><img src="https://avatars2.githubusercontent.com/u/7514426?s=60" width="48" height="48"/></a> <a href="https://github.com/valerioorfano">valerioorfano</a> maintains <a href="https://github.com/valerioorfano/Practice-Machine-Learning">Practice-machine-learning</a></p>
 
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">Practice-machine-learning maintained by <a href="https://github.com/valerioorfano">valerioorfano</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
-      </footer>
-    </div>
 
-    
+      </div>
+      <div class="creds">
+        <small>This page generated using <a href="http://pages.github.com/">GitHub Pages</a><br/>theme by <a href="https://twitter.com/jonrohan/">Jon Rohan</a></small>
+      </div>
+    </footer>
+  </div>
+  <div class="current-section">
+    <a href="#top">Scroll to top</a>
+    <a href="https://github.com/valerioorfano/Practice-Machine-Learning/tarball/master" class="tar">tar</a><a href="https://github.com/valerioorfano/Practice-Machine-Learning/zipball/master" class="zip">zip</a><a href="" class="code">source code</a>
+    <p class="name"></p>
+  </div>
 
-  </body>
+  
+</body>
 </html>
