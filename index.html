@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Practice-machine-learning : " />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Practice-machine-learning</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/valerioorfano/Practice-Machine-Learning">View on GitHub</a>
+
+          <h1 id="project_title">Practice-machine-learning</h1>
+          <h2 id="project_tagline"></h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/valerioorfano/Practice-Machine-Learning/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/valerioorfano/Practice-Machine-Learning/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h3>
+<a name="welcome-practice-machine-learning-project-assignment" class="anchor" href="#welcome-practice-machine-learning-project-assignment"><span class="octicon octicon-link"></span></a>Welcome Practice Machine Learning Project Assignment</h3>
+
+<h3>
+<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
+
+<p>Authors of the data for this project:
+Velloso, E.; Bulling, A.; Gellersen, H.; Ugulino, W.; Fuks, H. Qualitative Activity Recognition of Weight Lifting Exercises. Proceedings of 4th International Conference in Cooperation with SIGCHI (Augmented Human '13) . Stuttgart, Germany: ACM SIGCHI, 2013.
+Read more: <a href="http://groupware.les.inf.puc-rio.br/har">http://groupware.les.inf.puc-rio.br/har</a></p>
+
+<p>The training data for this project are available here: 
+<a href="https://d396qusza40orc.cloudfront.net/predmachlearn/pml-training.csv">https://d396qusza40orc.cloudfront.net/predmachlearn/pml-training.csv</a></p>
+
+<p>The test data are available here: 
+ <a href="https://d396qusza40orc.cloudfront.net/predmachlearn/pml-testing.csv">https://d396qusza40orc.cloudfront.net/predmachlearn/pml-testing.csv</a></p>
+
+<h4>
+<a name="scope-of-the-script" class="anchor" href="#scope-of-the-script"><span class="octicon octicon-link"></span></a>Scope of the script:</h4>
+
+<p>A dataset with 5 classes (sitting-down, standing-up, standing, walking, and sitting) have been collected on 8 hours of activities of 4 healthy subjects.
+Data from accelerometers on the belt, forearm, arm, and dumbell of  participants. They were asked to perform barbell lifts correctly and incorrectly in 5 different ways.
+The goal of the project is to predict the manner in which they did the exercise. This is the "classe" variable in the training set. Any other variables can be used to predict. </p>
+
+<h4>
+<a name="description-of-the-script" class="anchor" href="#description-of-the-script"><span class="octicon octicon-link"></span></a>Description of the script:</h4>
+
+<pre><code>download.file(url="https://d396qusza40orc.cloudfront.net/predmachlearn/pml-training.csv", destfile="training.csv")
+download.file(url="https://d396qusza40orc.cloudfront.net/predmachlearn/pml-testing.csv", destfile="testing.csv")
+library(caret)
+training&lt;-read.csv("training.csv", header=TRUE)
+testing&lt;-read.csv("testing.csv", header=TRUE)
+NAs &lt;- apply(training,2,function(x) {sum(is.na(x)| x=="")}) 
+# remove all the columns with empty or null values.
+training&lt;- training[,which(NAs == 0)]
+# remove first 6 columns because don't affect the classification
+training&lt;-training[,-c(1:6)]
+# same for testing data
+names&lt;-names(training)
+names&lt;-names[-length(names)]
+testing&lt;- testing[,names]
+# invoke RF algorithm using cross validation with 4 k-folds implying 70% data for training, 30% data for cross validation
+modFit &lt;- train(classe ~.,data = training,method="rf", prox=TRUE,allowParallel=T,trControl = trainControl(method = "cv", number = 4))
+prediction&lt;-predict(modFit,testing)
+</code></pre>
+
+<p>The parameter "trainControl(method = "cv", number = 4))" uses 4 folds data slicing, dividing the training data set into:</p>
+
+<p>70% for training data </p>
+
+<p>30% for cross validation data.</p>
+
+<p>Test data is an independent set used exclusively for predictions to avoid overfitting.</p>
+
+<p><strong>Error out of sample</strong></p>
+
+<pre><code>modFit$finalModel
+Call:
+ randomForest(x = x, y = y, mtry = param$mtry, proximity = TRUE,      allowParallel = ..2) 
+               Type of random forest: classification
+                     Number of trees: 500
+No. of variables tried at each split: 27
+
+        OOB estimate of  error rate: 0.51%
+Confusion matrix:
+     A    B    C    D    E  class.error
+A 2231    0    0    0    1 0.0004480287
+B    9 1505    5    0    0 0.0092165899
+C    0    5 1362    2    0 0.0051132213
+D    0    0    9 1278    0 0.0069930070
+E    0    1    0    8 1434 0.0062370062
+
+</code></pre>
+
+<p>OOB estimate of  error rate: 0.51%</p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Practice-machine-learning maintained by <a href="https://github.com/valerioorfano">valerioorfano</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
