@@ -8,7 +8,7 @@ library(caret)
 training<-read.csv("training.csv", header=TRUE)
 testing<-read.csv("testing.csv", header=TRUE)
 NAs <- apply(training,2,function(x) {sum(is.na(x)| x=="")}) 
-# remove all the columns with empty or null values.
+/ remove all the columns with empty or null values./
 training<- training[,which(NAs == 0)]
 # remove first 6 columns because don't affect the classification
 training<-training[,-c(1:6)]
