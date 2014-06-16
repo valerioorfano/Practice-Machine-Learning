@@ -34,7 +34,7 @@ testing<- testing[,names]
 
 ##### invoke RF algorithm using cross validation with 4 k-folds implying 70% data for training, 30% data for cross validation 
 
-#####Indeeed if we calculate :
+#####K-fold data slicing:
 
 ```
 foldsTrain<-createFolds(y=training$classe,k=4,list=TRUE,returnTrain=T)
