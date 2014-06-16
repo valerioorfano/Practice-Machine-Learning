@@ -76,11 +76,29 @@ modFit &lt;- train(classe ~.,data = training,method="rf", prox=TRUE,allowParalle
 prediction&lt;-predict(modFit,testing)
 </code></pre>
 
+<h5>
+<a name="k-fold-data-slicing" class="anchor" href="#k-fold-data-slicing"><span class="octicon octicon-link"></span></a>K-fold data slicing:</h5>
+
+<pre><code>foldsTrain&lt;-createFolds(y=training$classe,k=4,list=TRUE,returnTrain=T)
+sapply(folds,length)
+Fold1 Fold2 Fold3 Fold4 
+14715 14717 14718 14716 
+foldsCrossVal&lt;-createFolds(y=training$classe,k=4,list=TRUE,returnTrain=F)
+sapply(foldsCrossVal,length)
+Fold1 Fold2 Fold3 Fold4 
+4904  4907  4906  4905
+sapply(folds,length)/(sapply(folds,length)+sapply(foldsCrossVal,length))
+Fold1     Fold2     Fold3     Fold4 
+0.7500382 0.7499490 0.7500000 0.7500127
+if we use k=4 the training data is the 75% of whole input data. 
+CrossValData will be 25% of the whole input data
+</code></pre>
+
 <p>The parameter "trainControl(method = "cv", number = 4))" uses 4 folds data slicing, dividing the training data set into:</p>
 
-<p>70% for training data </p>
+<p>75% for training data </p>
 
-<p>30% for cross validation data.</p>
+<p>25% for cross validation data.</p>
 
 <p>Test data is an independent set used exclusively for predictions to avoid overfitting.</p>
 
