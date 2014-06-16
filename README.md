@@ -32,7 +32,7 @@ names<-names[-length(names)]
 testing<- testing[,names]
 ```
 
-##### invoke RF algorithm using cross validation with 4 k-folds implying 70% data for training, 30% data for cross validation 
+##### invoke RF algorithm using cross validation with 4 k-folds implying 75% data for training, 25% data for cross validation 
 
 #####K-fold data slicing:
 
