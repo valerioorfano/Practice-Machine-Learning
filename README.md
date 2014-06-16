@@ -26,16 +26,17 @@ training<-training[,-c(1:6)]
 
 ##### same for testing data 
 
-
+```
 names<-names(training)
 names<-names[-length(names)]
 testing<- testing[,names]
-
+```
 
 ##### invoke RF algorithm using cross validation with 4 k-folds implying 70% data for training, 30% data for cross validation 
 
-
+```
 modFit <- train(classe ~.,data = training,method="rf", prox=TRUE,allowParallel=T,trControl = trainControl(method = "cv", number = 4))
-
+```
+```
 prediction<-predict(modFit,testing)
-
+```
