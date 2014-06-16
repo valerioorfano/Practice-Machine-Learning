@@ -34,5 +34,6 @@ testing<- testing[,names]
 
 
 modFit <- train(classe ~.,data = training,method="rf", prox=TRUE,allowParallel=T,trControl = trainControl(method = "cv", number = 4))
+
 prediction<-predict(modFit,testing)
 
